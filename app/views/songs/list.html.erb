@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Songs</h1>
+
+<%= form_tag("", method: "get") do %>
+
+<%= select_tag :genre, options_for_select(Genre.all.map{|s|[s.name, s.id]}) %>
+
+<%= submit_tag 'Filtrar' %>
+<% end %>
+<%= form_tag("", method: "get") do %>
+
+<%= select_tag :ordenar, options_for_select(["Ascendente", "Descendente"]) %>
+
+<%= submit_tag 'Filtrar' %>
+<% end %>
+<br>
+<br>
+  <%= form_for(@user, :url => { :action => :agregar_cancion }, :method => :post  ) do |f| %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Duration</th>
+      <th colspan="3"></th>
+    </tr>
+
+    <%= hidden_field :user_id, @user.id %>
+  </thead>
+
+  <tbody>
+
+    <% @songs.each do |song| %>
+      <tr> 
+      <td><%= f.check_box 'song_ids', {multiple: true}, song.id, []%></td>
+        <td><%= song.name %></td>
+        <td><%= song.duration %></td>
+        <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'Edit', edit_song_path(song) %></td>
+        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+
+
+  
+  </tbody>
+</table>
+<br>
+<br>
+<%= f.submit 'Mis Canciones'%>
+  <% end %>
+<br>
+
+<%= link_to 'New Song', new_song_path %>
