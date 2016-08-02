@@ -3,9 +3,14 @@ class Ability
 
 
   def initialize(user)
-    user ||= User.new # En caso de que el usuario no haya ingresado.
-            
-            can :manage, :all
+    user ||= User.new(role: 3) # En caso de que el usuario no haya ingresado.
+    if user.role == 3
+        #no puede hacer nada ! 
+    else
+         can :manage, :all
+    end
+
+   
 
           #  can :agregar_cancion , Song, user_id: user.id
     #can [:update], [Movie, Review], user_id: user.id

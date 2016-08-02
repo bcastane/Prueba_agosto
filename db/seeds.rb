@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+Song.destroy_all
+UserSong.destroy_all
+
+3.times do |i|
+
+
+	song=Song.create!(name:"Cancion #{i}",duration: i*100)
+end

@@ -4,14 +4,14 @@
 
 <%= form_tag("", method: "get") do %>
 
-<%= select_tag :genre, options_for_select(Genre.all.map{|s|[s.name, s.id]}) %>
+<%= select_tag :genre, options_for_select(Genre.all.map{|s|[s.name, s.id]},params[:genre]) %>
 
 <%= submit_tag 'Filtrar' %>
 <% end %>
 
 <%= form_tag("", method: "get") do %>
 
-<%= select_tag :user_id, options_for_select(User.all.map{|s|[s.name, s.id]}) %>
+<%= select_tag :user_id, options_for_select(User.all.map{|s|[s.name, s.id]},params[:user_id]) %>
 
 <%= submit_tag 'Mirar Lista' %>
 <% end %>
@@ -19,7 +19,7 @@
 
 <%= form_tag("", method: "get") do %>
 
-<%= select_tag :ordenar, options_for_select(["Ascendente", "Descendente"]) %>
+<%= select_tag :ordenar, options_for_select(["Ascendente", "Descendente"],params[:ordenar]) %>
 
 <%= submit_tag 'Filtrar' %>
 <% end %>
